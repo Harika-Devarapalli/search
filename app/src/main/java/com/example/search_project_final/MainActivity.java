@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.search_project_final.adapaters.RestaurantListAdapter;
@@ -20,7 +21,7 @@ import java.io.Writer;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RestaurantListAdapter.RestaurantClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
     {
         RecyclerView recyclerview=findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        RestaurantListAdapter adapter=new RestaurantListAdapter(restaurantModelList);;
-
+        RestaurantListAdapter adapter=new RestaurantListAdapter(restaurantModelList,this);
         recyclerview.setAdapter(adapter);
     }
     private List<RestaurantModel> getRestaurantData(){
@@ -63,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         List<RestaurantModel> restList= Arrays.asList(restaurantModels);
 
         return restList;
+    }
+
+    @Override
+    public void onItemClick(RestaurantModel restaurantModel) {
+        Intent intent=new Intent(MainActivity.this,RestarunantMenu.class);
+        intent.putExtra("RestaurantModel",restaurantModel);
+        startActivity(intent);
     }
 }
 

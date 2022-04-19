@@ -1,5 +1,6 @@
 package com.example.search_project_final.adapaters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.search_project_final.R;
 import com.example.search_project_final.model.RestaurantModel;
 
@@ -16,9 +18,11 @@ import java.util.List;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
     private List<RestaurantModel> restaurantModelList;
-    public RestaurantListAdapter(List<RestaurantModel> restaurantModelList)
+    private RestaurantClickListener ClickListener;
+    public RestaurantListAdapter(List<RestaurantModel> restaurantModelList,RestaurantClickListener clickListener)
     {
          this.restaurantModelList=restaurantModelList;
+         this.ClickListener=clickListener;
     }
     public void updateData(List<RestaurantModel> restaurantModelList)
     {
@@ -34,10 +38,20 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RestaurantListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RestaurantListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.restaurantTitle.setText(restaurantModelList.get(position).getAddress());
-        holder.restaurantadd.setText("Address is :" +restaurantModelList.get(position).getAddress());
-        holder.restauranthours.setText("Today's Hours are:" +restaurantModelList.get(position).getName());
+        holder.restaurantadd.setText("Address is :" +restaurantModelList.get(position).getName());
+        holder.restauranthours.setText("Today's Hours are:" +restaurantModelList.get(position).getHours().getTodayHours());
+       //holder.image.setImageBitmap(bi);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClickListener.onItemClick(restaurantModelList.get(position));
+            }
+        });
+        Glide.with(holder.image)
+                .load(restaurantModelList.get(position).getImage())
+                .into(holder.image);
     }
 
     @Override
@@ -60,5 +74,10 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             restauranthours=view.findViewById(R.id.restauranthours);
             image=view.findViewById(R.id.image);
         }
+    }
+    public interface RestaurantClickListener
+    {
+        public void onItemClick(RestaurantModel restaurantModel);
+
     }
 }
