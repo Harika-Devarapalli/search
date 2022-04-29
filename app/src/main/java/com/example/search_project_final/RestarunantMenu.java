@@ -19,29 +19,29 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     private List<Menu>menuList=null;
     private MenuListAdapter menuListAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restarunant_menu);
         RestaurantModel restaurantModel=getIntent().getParcelableExtra("RestaurantModel");
+
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle(restaurantModel.getName());
         actionBar.setSubtitle(restaurantModel.getAddress());
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         menuList=restaurantModel.getMenu();
-        initReyclerView();
+        initRecyclerview();
 
         TextView submit=findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
             }
         });
     }
-    private void initReyclerView()
-    {
+    public void initRecyclerview()
+      {
         RecyclerView recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         menuListAdapter=new MenuListAdapter(menuList,this);
@@ -50,7 +50,7 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     }
 
     @Override
-    public void onAddToCart(Menu menu) {
+    public void onAddToCartButton(Menu menu) {
 
     }
 }

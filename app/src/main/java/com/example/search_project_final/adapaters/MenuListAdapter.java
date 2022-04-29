@@ -44,15 +44,16 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         holder.menuprice.setText("Price is:" +menuList.get(position).getItem_price());
         holder.addtocartbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
             }
         });
        //holder.image.setImageBitmap(bi);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                ClickListener.onAddToCart(menuList.get(position));
+            public void onClick(View v)
+            {
+                ClickListener.onAddToCartButton(menuList.get(position));
             }
         });
         Glide.with(holder.image)
@@ -83,7 +84,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
     }
     public interface MenuListClickListener
     {
-        public void onAddToCart(Menu menu);
+        public void onAddToCartButton(Menu menu);
 
     }
 }

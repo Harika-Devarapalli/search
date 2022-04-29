@@ -19,6 +19,7 @@ import java.util.List;
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
     private List<RestaurantModel> restaurantModelList;
     private RestaurantClickListener ClickListener;
+
     public RestaurantListAdapter(List<RestaurantModel> restaurantModelList,RestaurantClickListener clickListener)
     {
          this.restaurantModelList=restaurantModelList;
@@ -45,7 +46,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
        //holder.image.setImageBitmap(bi);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 ClickListener.onItemClick(restaurantModelList.get(position));
             }
         });

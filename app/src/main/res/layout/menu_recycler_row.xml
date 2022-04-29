@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="71dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="5dp"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linear"
@@ -26,15 +25,15 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:id="@+id/image"
-                android:layout_margin="15dp"
-                android:layout_gravity="center_horizontal"    />
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="15dp" />
 
             <TextView
                 android:id="@+id/menuName"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
@@ -45,7 +44,7 @@
 
             <TextView
                 android:id="@+id/menuprice"
-                android:layout_width="wrap_content"
+                android:layout_width="84dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
@@ -58,14 +57,14 @@
                 android:id="@+id/addtocartbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
+                android:background="@drawable/backgroundsubmit"
+                android:text="Add To Cart"
                 android:textColor="@color/teal_200"
                 android:textSize="17dp"
-                android:text="Add To Cart"
-                android:layout_margin="5dp"
-                android:background="@drawable/backgroundsubmit"
                 android:textStyle="bold" />
         </LinearLayout>
 
