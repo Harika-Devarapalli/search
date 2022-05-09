@@ -3,6 +3,7 @@ package com.example.search_project_final;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -42,8 +43,8 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     }
     public void initRecyclerview()
       {
-        RecyclerView recyclerView=findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        RecyclerView recyclerView=findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         menuListAdapter=new MenuListAdapter(menuList,this);
 
         recyclerView.setAdapter(menuListAdapter);
