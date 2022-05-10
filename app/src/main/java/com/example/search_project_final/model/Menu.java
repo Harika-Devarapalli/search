@@ -7,11 +7,22 @@ public class Menu implements Parcelable
 {
     private String item_name;
     private String url;
+    private int totalcart;
+
+    public int getTotalcart() {
+        return totalcart;
+    }
+
+    public void setTotalcart(int totalcart) {
+        this.totalcart = totalcart;
+    }
+
     private float item_price;
 
     protected Menu(Parcel in) {
         item_name = in.readString();
         url = in.readString();
+        totalcart = in.readInt();
         item_price = in.readFloat();
     }
 
@@ -61,5 +72,6 @@ public class Menu implements Parcelable
         parcel.writeString(item_name);
         parcel.writeString(url);
         parcel.writeFloat(item_price);
+        parcel.writeInt(totalcart);
     }
 }

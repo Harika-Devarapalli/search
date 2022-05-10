@@ -46,7 +46,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
        //holder.image.setImageBitmap(bi);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v  ) {
                 ClickListener.onItemClick(restaurantModelList.get(position));
             }
         });

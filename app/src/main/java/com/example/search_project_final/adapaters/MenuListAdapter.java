@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,17 +46,22 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         holder.addtocartbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Menu menu=menuList.get(position);
+                menu.setTotalcart(1);
+                ClickListener.onAddToCartButton(menu);
+                holder.layout.setVisibility(View.VISIBLE);
+                holder.addtocartbutton.setVisibility(View.GONE);
+                holder.count.setText(menu.getTotalcart()+"");
             }
         });
        //holder.image.setImageBitmap(bi);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                ClickListener.onAddToCartButton(menuList.get(position));
-            }
-        });
+        //holder.itemView.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v)
+            //{
+            //    ClickListener.onAddToCartButton(menuList.get(position));
+            //}
+       //});
         Glide.with(holder.image)
                 .load(menuList.get(position).getUrl())
                 .into(holder.image);
@@ -71,6 +77,11 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         TextView menuprice;
         TextView addtocartbutton;
         ImageView image;
+        ImageView buttonminus;
+        ImageView buttonplus;
+        TextView count;
+        LinearLayout layout;
+
 
 
         public MyViewHolder(View view)
@@ -80,6 +91,10 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
             menuprice=view.findViewById(R.id.menuprice);
             addtocartbutton=view.findViewById(R.id.addtocartbutton);
             image=view.findViewById(R.id.image);
+            buttonminus=view.findViewById(R.id.buttonminus);
+            buttonplus=view.findViewById(R.id.buttonplus);
+            count=view.findViewById(R.id.count);
+            layout=view.findViewById(R.id.layout);
         }
     }
     public interface MenuListClickListener
